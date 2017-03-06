@@ -20,6 +20,7 @@ the entire file will have to be sent to each worker!
 - [FFprobe Tips](https://trac.ffmpeg.org/wiki/FFprobeTips)
 - [Concatenating media files](https://trac.ffmpeg.org/wiki/Concatenate#no1)
 - [Understanding screen resolution and aspect ratio](http://www.digitalcitizen.life/what-screen-resolution-or-aspect-ratio-what-do-720p-1080i-1080p-mean)
+
 ### Glossary
 **segmenting** - Using the [stream segmenter](https://www.ffmpeg.org/ffmpeg-all.html#segment_002c-stream_005fsegment_002c-ssegment) 
 to chunk a file. This can be performed in one command:
