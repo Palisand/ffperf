@@ -140,12 +140,15 @@ class Transcoder(object):
 
     def split(self, num_chunks):
         print("Splitting into {} chunks.".format(num_chunks))
-        chunk_time = math.ceil(self.__duration / num_chunks)
+        chunk_time = self.get_chunk_time(num_chunks)
         try:
             self.__split_with_segment(chunk_time)
         except FFmpegException:
             print("Failed to split using FFmpeg segment option, falling back to manual splitting.")
-            self.__split_manually(num_chunks, chunk_time)
+            self.__split_by_seeking(num_chunks, chunk_time)
+
+    def get_chunk_time(self, num_chunks):
+        return math.ceil(self.__duration / num_chunks)
 
     def __split_with_segment(self, chunk_time):
         options = self.BASE_FFMPEG_OPTIONS + [
@@ -164,21 +167,24 @@ class Transcoder(object):
             self.__remove_chunk_files()
             raise FFmpegException(e)
 
-    def __split_manually(self, num_chunks, chunk_time):
+    def __split_by_seeking(self, num_chunks, chunk_time):
         for i in range(num_chunks):
-            options = self.BASE_FFMPEG_OPTIONS + [
-                '-ss', str(i * chunk_time),
-                '-t', str(chunk_time),
-                '-i', self.__input,
-                '-c', 'copy'
-            ]
-            output = ''.join((self.__chunk_base_path, str(i), self.__ext))
-            subprocess.call(['ffmpeg'] + options + [output])
+            self.seek_split(i, chunk_time)
             # append to chunk list file
             with open(self.__chunk_list_filepath, "a") as chunk_list_file:
                 chunk_list_file.write("file {}\n".format(
                     ''.join((self.CHUNK_FILENAME_BASE, str(i), self.__ext))
                 ))
+
+    def seek_split(self, chunk_num, chunk_time):
+        options = self.BASE_FFMPEG_OPTIONS + [
+            '-ss', str(chunk_num * chunk_time),
+            '-t', str(chunk_time),
+            '-i', self.__input,
+            '-c', 'copy',
+        ]
+        output = ''.join((self.__chunk_base_path, str(chunk_num), self.__ext))
+        subprocess.call(['ffmpeg'] + options + [output])
 
     def stitch(self, suffix=None):
         print("Stitching...")
