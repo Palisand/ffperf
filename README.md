@@ -22,14 +22,18 @@ the entire file will have to be sent to each worker!
 - [Understanding screen resolution and aspect ratio](http://www.digitalcitizen.life/what-screen-resolution-or-aspect-ratio-what-do-720p-1080i-1080p-mean)
 
 ### Glossary
-**segmenting** - Using the [stream segmenter](https://www.ffmpeg.org/ffmpeg-all.html#segment_002c-stream_005fsegment_002c-ssegment) 
-to chunk a file. This can be performed in one command:
+**segmenting**
+
+Using the [stream segmenter](https://www.ffmpeg.org/ffmpeg-all.html#segment_002c-stream_005fsegment_002c-ssegment) 
+to chunk a file. This can be performed with one command:
 
 ```bash
 ffmpeg -i input.ext -c copy -f segment -reset_timestamps 1 -map 0
 ```
 
-**seek-splitting** - Chunking a file by seeking a start position and setting a read duration. 
+**seek-splitting**
+
+Chunking a file by seeking a start position and setting a read duration. 
 This is performed with multiple commands:
 
 ```bash
