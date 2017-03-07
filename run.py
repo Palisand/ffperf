@@ -30,7 +30,7 @@ def chunked_transsize(transcoder, height, aspect_ratio, workers):
 
 def parallel_chunked_transsize(transcoder, height, aspect_ratio, workers):
     """
-    THIS DOES NOT WORK
+    Will not work as a method for estimating distributed transcode time.
     """
     start = time.time()
     transcoder.split(workers)
@@ -62,11 +62,16 @@ def parallel_seek_split(transcoder, workers):
 if __name__ == "__main__":
     if len(sys.argv) != 2:
         print("Usage: TODO")
+        sys.exit(1)
 
     t = Transcoder(sys.argv[1])
     transsize_args = (720, 16 / 9)
 
     workers = 5  # TODO: sys.arg --workers -w
 
-    seek_split(t, workers)
-    parallel_seek_split(t, workers)
+    # transsize(t, *transsize_args)
+
+    # chunked_transsize(t, *transsize_args, workers)
+
+    # seek_split(t, workers)
+    # parallel_seek_split(t, workers)

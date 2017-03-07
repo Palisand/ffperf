@@ -105,8 +105,13 @@ class Transcoder(object):
             name = os.path.splitext(chunk_file)[0] or self.__name
             options = self.BASE_FFMPEG_OPTIONS + [
                 '-i', input,
-                '-vf', 'scale={}:{}'.format(width, height)
+                # '-pix_fmt', 'yuv420p',
+                '-vf', 'scale={}:{},format=pix_fmts=yuv420p'.format(width, height),
             ]
+            # Recorded times
+            # 320.55 - no pixel format
+            # 312.36 - -pix_fmt
+            # 302.20 - (BEST) format=pix_fmts
             output = "{name}_{w}_{h}{ext}".format(
                 name=name, w=width, h=height, ext=self.__ext
             )
@@ -141,6 +146,7 @@ class Transcoder(object):
     def split(self, num_chunks):
         print("Splitting into {} chunks.".format(num_chunks))
         chunk_time = self.get_chunk_time(num_chunks)
+        # TODO: check if Timecode frame rate is specified (required for segmenting)
         try:
             self.__split_with_segment(chunk_time)
         except FFmpegException:
