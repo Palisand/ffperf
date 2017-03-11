@@ -5,6 +5,7 @@
   - Small file tested already and split-time difference was negligible.
 - [x] Compare the time it takes to segment to the time it takes to seek-split (with and without multiprocessing).
 - [x] Look into **threading** to increase FFmpeg performance: see [this](http://superuser.com/questions/538164/how-many-instances-of-ffmpeg-commands-can-i-run-in-parallel/547340#547340).
+  - By default, ffmpeg uses the optimal thread setting but effectiveness varies depending on the codec used.
 - [ ] Test more file types and multiple files of the same type.
    - Table of files/filetypes tested.
 - [ ] Find which chunking methods work / work best for different file formats.
