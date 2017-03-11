@@ -69,6 +69,8 @@ if __name__ == "__main__":
 
     workers = 5  # TODO: sys.arg --workers -w
 
+    t.split(workers)
+
     # transsize(t, *transsize_args)
 
     # chunked_transsize(t, *transsize_args, workers)
