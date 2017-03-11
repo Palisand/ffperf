@@ -25,10 +25,14 @@ the entire file will have to be sent to each worker!
 - Using a manifest file might come in handy: https://github.com/c0decracker/video-splitter
 
 ## Links
+#### Guidance
 - [FFprobe Tips](https://trac.ffmpeg.org/wiki/FFprobeTips)
 - [Concatenating media files](https://trac.ffmpeg.org/wiki/Concatenate#no1)
 - [Creating multiple outputs](https://trac.ffmpeg.org/wiki/Creating%20multiple%20outputs)
 - [Understanding screen resolution and aspect ratio](http://www.digitalcitizen.life/what-screen-resolution-or-aspect-ratio-what-do-720p-1080i-1080p-mean)
+#### Assets
+ - [harmonic 4k demo footage](https://www.harmonicinc.com/4k-demo-footage-download/)
+ - [demo-world hd trailers](http://www.demo-world.eu/2d-demo-trailers-hd/)
 
 ## Glossary
 **segmenting**

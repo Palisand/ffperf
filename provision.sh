@@ -83,6 +83,6 @@ echo "MANPATH_MAP $HOME/bin $HOME/ffmpeg_build/share/man" >> ~/.manpath
 
 source ~/.profile
 
-# install rust
+# install rust (and curl)
 sudo apt-get -y install curl
 curl https://sh.rustup.rs -sSf | sh -s -- -y
